@@ -10,11 +10,13 @@
     </js-module>
 
     <platform name="android">
+        <!-- include the "android-sdk-${version}.aar" library in your project -->
         <framework src="src/android/android-sdk-1.0.0.aar" custom="true" type="aar" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
     </platform>
 
     <platform name="ios">
+        <!-- include the "ios-sdk-${version}" library in your project -->
         <framework src="src/ios/ios-sdk-1.0.0.xcframework" custom="true" embed="true" />
         <header-file src="src/ios/SignicatPlugin.h" />
         <source-file src="src/ios/SignicatPlugin.m" />
@@ -28,3 +30,4 @@
     </platform>
 
 </plugin>
+
