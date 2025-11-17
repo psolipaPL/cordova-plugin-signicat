@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-signicat",
+  "version": "1.0.0",
+  "description": "Cordova plugin for Signicat Identity Broker Mobile SDK (Connectis / Signicat Adapters SDK)",
+  "cordova": {
+    "id": "cordova-plugin-signicat",
+    "platforms": ["android", "ios"]
+  },
+  "keywords": [
+    "cordova",
+    "signicat",
+    "identity",
+    "broker",
+    "mobile-sdk"
+  ],
+  "author": "Product League",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apalmaPL/cordova-plugin-signicat.git"
+  }
+}
