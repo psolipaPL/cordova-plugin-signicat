@@ -16,7 +16,8 @@
     </js-module>
 
     <platform name="android">
-        <!-- include the "android-sdk-${version}.aar" library in your project -->
+        <!-- include the "android-sdk-1.1.5.aar" library -->
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference"/>
         <framework src="src/android/android-sdk-1.1.5.aar" custom="true" type="aar" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
     </platform>
@@ -44,6 +45,7 @@
     </platform>
 
 </plugin>
+
 
 
 
