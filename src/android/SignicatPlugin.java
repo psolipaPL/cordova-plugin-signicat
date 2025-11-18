@@ -7,10 +7,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 
-import com.signicat.plugin.ConnectisSDK;
-import com.signicat.plugin.ConnectisSDKConfiguration;
-import com.signicat.plugin.AuthenticationResponseDelegate;
-import com.signicat.plugin.AccessTokenDelegate;
+import com.connectis.sdk.ConnectisSDK;
+import com.connectis.sdk.ConnectisSDKConfiguration;
+import com.connectis.sdk.AuthenticationResponseDelegate;
+import com.connectis.sdk.AccessTokenDelegate;
 
 
 public class SignicatPlugin extends CordovaPlugin {
