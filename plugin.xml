@@ -100,7 +100,7 @@
         <!-- Allow universal links if used -->
         <config-file target="*-Info.plist" parent="com.apple.developer.associated-domains">
             <array>
-                <string>applinks:your-domain.com</string>
+                <string>applinks:salland-dev.outsystems.app</string>
             </array>
         </config-file>
 
@@ -110,6 +110,7 @@
     </platform>
 
 </plugin>
+
 
 
 
