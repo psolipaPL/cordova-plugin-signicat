@@ -2,11 +2,7 @@ platform :ios, '12.0'
 use_frameworks! :linkage => :static
 
 target '$(PROJECT_NAME)' do
-    # If your SDK is delivered as a Cocoapod
-    # pod 'ConnectisSDK', '1.1.5'
-
-    # If SDK is *not* a pod and is instead included manually,
-    # leave this empty.
+    pod 'ConnectisSDK', '1.1.5'
 end
 
 post_install do |installer|
