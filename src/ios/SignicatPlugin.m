@@ -2,6 +2,8 @@
 #import "SignicatPlugin.h"
 #import <ConnectisSDK/ConnectisSDK.h>
 #import <ConnectisSDK/ConnectisSDK-Swift.h>
+#import com.connectis.sdk.api.configuration.ConnectisSDKConfiguration
+
 
 
 @implementation SignicatPlugin
@@ -16,22 +18,8 @@
     NSString *brokerAppAcs = config[@"brokerAppAcs"];
     NSString *brokerDigidAppAcs = config[@"brokerDigidAppAcs"];
 
-    
+    ConnectisSDKConfiguration *cfg;
 
-}
-
-
-
-- (void)enableDeviceAuth:(CDVInvokedUrlCommand*)command {
-    [ConnectisSDK enableDeviceAuthentication];
-    CDVPluginResult *res = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"deviceAuthEnabled"];
-    [self.commandDelegate sendPluginResult:res callbackId:command.callbackId];
-}
-
-- (void)disableDeviceAuth:(CDVInvokedUrlCommand*)command {
-    [ConnectisSDK disableDeviceAuthentication];
-    CDVPluginResult *res = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"deviceAuthDisabled"];
-    [self.commandDelegate sendPluginResult:res callbackId:command.callbackId];
 }
 
 
