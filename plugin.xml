@@ -105,13 +105,13 @@
         </config-file>
     
         <!-- Required for Swift frameworks -->
-        <config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
+        <!--<config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
             <string>YES</string>
         </config-file>
     
         <config-file target="project.pbxproj" parent="LD_RUNPATH_SEARCH_PATHS">
             <string>$(inherited) @executable_path/Frameworks</string>
-        </config-file>
+        </config-file>-->
 
         <pods use-frameworks="true">
             <pod name="AppAuth" />
@@ -120,6 +120,7 @@
     </platform>
 
 </plugin>
+
 
 
 
