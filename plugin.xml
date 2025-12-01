@@ -90,26 +90,11 @@
         <source-file src="src/ios/SignicatPlugin.swift" />
     
         <preference name="UseSwiftLanguageVersion" value="6.0" />
-    
-        <config-file target="*-Debug.xcconfig" parent="SWIFT_VERSION">
-            <string>6.0</string>
-        </config-file>
-        <config-file target="*-Release.xcconfig" parent="SWIFT_VERSION">
-            <string>6.0</string>
-        </config-file>
-    
-        <config-file target="project.pbxproj" parent="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES">
-            <string>YES</string>
-        </config-file>
-    
-        <config-file target="project.pbxproj" parent="LD_RUNPATH_SEARCH_PATHS">
-            <string>$(inherited) @executable_path/Frameworks</string>
-        </config-file>
-
-        
+            
     </platform>
 
 </plugin>
+
 
 
 
