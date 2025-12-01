@@ -16,10 +16,23 @@
     NSString *brokerAppAcs = config[@"brokerAppAcs"];
     NSString *brokerDigidAppAcs = config[@"brokerDigidAppAcs"];
 
-    ConnectisSDKConfiguration *cfg = [[ConnectisSDKConfiguration alloc] initWithIssuer:issuer clientID:clientId redirectURI:redirectUri loginFlow:( [loginFlow isEqualToString:@"APP_TO_APP"] ? ConnectisLoginFlowAppToApp : ConnectisLoginFlowWeb )];
+    
 
 }
 
+
+
+- (void)enableDeviceAuth:(CDVInvokedUrlCommand*)command {
+    [ConnectisSDK enableDeviceAuthentication];
+    CDVPluginResult *res = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"deviceAuthEnabled"];
+    [self.commandDelegate sendPluginResult:res callbackId:command.callbackId];
+}
+
+- (void)disableDeviceAuth:(CDVInvokedUrlCommand*)command {
+    [ConnectisSDK disableDeviceAuthentication];
+    CDVPluginResult *res = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"deviceAuthDisabled"];
+    [self.commandDelegate sendPluginResult:res callbackId:command.callbackId];
+}
 
 
 @end
