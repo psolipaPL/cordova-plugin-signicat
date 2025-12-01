@@ -83,7 +83,8 @@
     </platform>
 
     <platform name="ios">
-        
+
+        <source-file src="src/ios/Dummy.swift" />
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
         <preference name="UseSwiftLanguageVersion" default="6.0" />
         <header-file src="src/ios/SignicatPlugin.h" />
@@ -112,6 +113,7 @@
     </platform>
 
 </plugin>
+
 
 
 
