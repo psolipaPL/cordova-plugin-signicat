@@ -20,7 +20,7 @@ class SignicatPlugin: CDVPlugin {
         let appToAppRedirectURI: String = "https://pkio.broker.ng-test.nl/broker/app/redirect/response"
         let brokerAppAcs: String = "https://pkio.broker.ng-test.nl/broker/authn/oidc/response"
 
-        let configuration = ConnectisSDK.ConnectisSDKConfiguration.init(
+        let configuration = ConnectisSDKConfiguration.init(
             issuer: issuer,
             clientID: clientID,
             redirectURI: appToAppRedirectURI,
@@ -28,7 +28,7 @@ class SignicatPlugin: CDVPlugin {
             brokerDigidAppAcs: brokerDigidAppAcs,
             loginFlow: LoginFlow.APP_TO_APP)
         
-        ConnectisSDK.logIn(sdkConfiguration: configuration, caller: self, delegate: responseController, allowDeviceAuthentication: ConnectisSDK.isDeviceAuthenticationEnabled())
+        
     }
     
 }
