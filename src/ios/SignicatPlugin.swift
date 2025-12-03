@@ -1,17 +1,13 @@
 import Foundation
 import ConnectisSDK
 
-@objc(SignicatPlugin)
+
 class SignicatPlugin: CDVPlugin {
 
+    func wtf() {
+        var isDeviceAuthEnabled = ConnectisSDK.isDeviceAuthenticationEnabled()
 
-    @objc(login:)
-    func login(command: CDVInvokedUrlCommand) {
-        
-    }
-
-    private func enableDeviceAuthentication() {
-        ConnectisSDK.enableDeviceAuthentication(delegate: self)
+        return isDeviceAuthEnabled
     }
 }
 
