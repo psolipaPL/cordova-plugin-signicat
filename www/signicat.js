@@ -2,7 +2,7 @@ var exec = require("cordova/exec");
 
 module.exports = {
   login: function (config, success, error) {
-    exec(success, error, "SignicatPlugin", "login", [config]);
+    exec(success, error, "SignicatPlugin", "loginAppToApp", [config]);
   },
 
   getAccessToken: function (success, error) {
