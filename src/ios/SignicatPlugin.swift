@@ -68,10 +68,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
         let result: [String: Any] = [
             "nameIdentifier": nameId,
-            "issuer": authenticationResponse.issuer ?? "",
-            "accessToken": authenticationResponse.accessToken ?? "",
-            "idToken": authenticationResponse.idToken ?? "",
-            "refreshToken": authenticationResponse.refreshToken ?? "",
             "isSuccess": authenticationResponse.isSuccess
         ]
 
