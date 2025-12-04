@@ -28,19 +28,10 @@ class SignicatPlugin: CDVPlugin {
     }
     
 
-    public protocol AuthenticationResponseDelegate: class {
-        func handleResponse(authenticationResponse: AuthenticationResponse)
-        func onCancel()
-    }
-
-    public struct AuthenticationResponse {
-        public var isSuccess: Bool
-        public var error: Error?
-        public var nameIdentifier: String?
-        public var attributes: [Attribute]?
-    }
+}
 
 
+extension SignicatPlugin: AuthenticationResponseDelegate {
     func handleResponse(authenticationResponse: AuthenticationResponse) {
 
     }
@@ -48,7 +39,6 @@ class SignicatPlugin: CDVPlugin {
     func onCancel() {
 
     }
-
-
+    
 }
 
