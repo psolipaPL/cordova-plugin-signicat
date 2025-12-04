@@ -3,13 +3,13 @@ import ConnectisSDK
 
 
 
-
 @objc(SignicatPlugin)
 class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
     private var currentCommand: CDVInvokedUrlCommand?
 
     @objc(loginAppToApp:)
+    @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
 
         self.currentCommand = command
@@ -36,14 +36,8 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             loginFlow: LoginFlow.APP_TO_APP
         )
 
+        self.showAlert(title: "Login", message: "Login App-to-App triggered")
 
-        let alert = UIAlertController(title: "LoginAppToApp", message: "Login executed", preferredStyle: UIAlertController.Style.alert)
-
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-
-        self.present(alert, animated: true, completion: nil)
-
-        
         ConnectisSDK.logIn(
             sdkConfiguration: configuration,
             caller: self.viewController,
@@ -111,4 +105,19 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
     }
 
 
+}
+
+
+@MainActor
+private func showAlert(title: String, message: String) {
+    guard let vc = self.viewController else { return }
+
+    let alert = UIAlertController(
+        title: title,
+        message: message,
+        preferredStyle: .alert
+    )
+
+    alert.addAction(UIAlertAction(title: "OK", style: .default))
+    vc.present(alert, animated: true)
 }
