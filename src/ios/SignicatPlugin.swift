@@ -52,8 +52,9 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             loginFlow: LoginFlow.APP_TO_APP
         )
 
-        let debugResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "Native reached")
-        self.commandDelegate.send(debugResult, callbackId: command.callbackId)
+        Task { @MainActor in
+            self.showAlert(title: "LoginAppToApp", message: "Login executed")
+        }
 
         ConnectisSDK.logIn(
             sdkConfiguration: configuration,

@@ -84,6 +84,12 @@
 
     <platform name="ios">
     
+        <config-file target="config.xml" parent="/*">
+            <feature name="Signicat">
+                <param name="ios-package" value="SignicatPlugin" />
+            </feature>
+        </config-file>
+
         <framework src="src/ios/ConnectisSDK.framework" custom="true" embed="true" />
         
         <source-file src="src/ios/SignicatPlugin.swift" />
@@ -100,17 +106,3 @@
     </platform>
 
 </plugin>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
