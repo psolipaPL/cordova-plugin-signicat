@@ -35,13 +35,28 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
         let redirectURI = "https://pkio.broker.ng-test.nl/broker/app/redirect/response"
         let appToAppScopes = "openid idp_scoping:https://was-preprod1.digid.nl/saml/idp/metadata_app"
         let brokerDigidAppAcs = "https://pkio.broker.ng-test.nl/broker/authn/digid/digid-app-acs"
-        */
+        
         let issuer = "https://preprodbroker.salland.nl/broker/authn/digid"
         let clientID = "sandbox-purple-heart-392"
         let redirectURI = "https://salland-dev.outsystems.app/Adriano_Sandbox/Redirect"
         let appToAppScopes = "openid"
         let brokerDigidAppAcs = "https://preprodbroker.salland.nl/broker/authn/digid/acs"
-        
+*/
+        guard command.arguments.count >= 5,
+            let issuer = command.arguments[0] as? String,
+            let clientID = command.arguments[1] as? String,
+            let redirectURI = command.arguments[2] as? String,
+            let appToAppScopes = command.arguments[3] as? String,
+            let brokerDigidAppAcs = command.arguments[4] as? String
+        else {
+            let result = CDVPluginResult(
+                status: CDVCommandStatus_ERROR,
+                messageAs: "Missing or invalid parameters"
+            )
+            self.commandDelegate.send(result, callbackId: command.callbackId)
+            return
+        }
+
 
         let configuration = ConnectisSDKConfiguration(
             issuer: issuer,
