@@ -15,8 +15,8 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
         let toastController: UIAlertController =
             UIAlertController(
-            title: "",
-            message: msg,
+            title: "WOOOOW!",
+            message: "Login app2app executed!",
             preferredStyle: .alert
             )
 
