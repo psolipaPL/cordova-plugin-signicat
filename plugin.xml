@@ -10,7 +10,7 @@
     </js-module>
 
 
-    <dependency id="cordova-plugin-deeplinks" url="https://github.com/apalmaPL/cordova-plugin-deeplinks.git"/>
+    <!--<dependency id="cordova-plugin-deeplinks" url="https://github.com/apalmaPL/cordova-plugin-deeplinks.git"/>-->
 
     <platform name="android">
         
