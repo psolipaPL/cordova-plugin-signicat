@@ -7,6 +7,13 @@ module.exports = {
 };
 */
 
+window.handleOpenURL = function(url) {
+    setTimeout(function() {
+        alert(url);
+        console.log(url);
+    }, 0);
+}
+
 module.exports = {
   login: function (
     issuer,
