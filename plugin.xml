@@ -30,6 +30,68 @@
             src="org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
             type="gradlePlugin" />
         
+
+        <activity
+            android:exported="true"
+            android:name="com.connectis.sdk.api.authentication.AppResponseActivity"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="salproxy.product-league.com"
+                    android:pathPrefix="/Salland_DigiD/Redirect" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:exported="true"
+            android:name="com.connectis.sdk.api.authentication.digid.DigidResponseActivity"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="salproxy.product-league.com"
+                    android:pathPrefix="/Salland_DigiD/Redirect" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:exported="true"
+            android:name="net.openid.appauth.RedirectUriReceiverActivity"
+            tools:node="replace">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="salproxy.product-league.com"
+                    android:pathPrefix="/Salland_DigiD/Redirect" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="nl.salland.android.mysandbox"/>
+            </intent-filter>
+        </activity>
+
+
+
     </platform>
 
     <platform name="ios">
