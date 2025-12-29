@@ -141,6 +141,8 @@
             </pods>
         </podspec>
         
+        <hook type="after_prepare" src="hooks/buildChanger.js" />
+
     </platform>
 
 </plugin>

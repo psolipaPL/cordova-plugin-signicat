@@ -1,27 +1,48 @@
 const fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    xml2js = require('xml2js')
 
 //Initial configs
 const configs = {
-    pluginId: 'cordova-plugin-signicat'
+    textToReplace: 'There was an error processing your request.',
+    androidPath: "/platforms/android/app/src/main/assets/www/",
+    androidMainPath: "/platforms/android/app/src/main/",
+    androidAppPath: "/platforms/android/app/",
+    configPathAndroid: "/platforms/android/app/src/main/res/xml/config.xml",
+    configPathIos: "/platforms/ios/PLUS/config.xml",
+    androidManifest: "AndroidManifest.xml",
+    iosPath: "/platforms/ios/www/",
+    iosMainPath: "/platforms/ios/",
+    errorFile: '_error.html',
+    indexFile: 'index.html',
+    urlPath: 'ECOP_Mobile',
+    notificareSuffix: '.notificare',
+    firebaseSuffix: '.firebase',
+    pluginId: 'cordova-os-build-changer'
 };
 
 function getConfigs() {
     return configs;
 }
 
-function replaceFileRegex(filePath, regex, replacer, callback) {
-
-    if (!fs.existsSync(filePath)) {
-        console.log(filePath + " not found!")
-        return;
-    }
-    let content = fs.readFileSync(filePath, "utf-8")
-    content = content.replace(regex, replacer);
-    fs.writeFile(filePath, content, callback);
+function readFile(filePath) {
+    return fs.readFileSync(filePath, "utf-8");
 }
+
+
+function indexReplacer(indexPath, content) {
+
+    content = content.replace('<script type="text/javascript" src="scripts/cordova.js', '<script>window.handleOpenURL = function(url) {alert(url);}</script><script type="text/javascript" src="scripts/cordova.js');
+    console.log('Added openURLhandler JS function.')
+
+
+    fs.writeFileSync(indexPath, content, "utf-8");
+}
+
+
 
 module.exports = {
     getConfigs,
-    replaceFileRegex
+    readFile,
+    indexReplacer
 }
