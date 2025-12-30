@@ -46,8 +46,8 @@
 
                 <data
                     android:scheme="https"
-                    android:host="salproxy.product-league.com"
-                    android:pathPrefix="/Salland_DigiD/Redirect" />
+                    android:host="testpilot.hollandzorg.com"
+                    android:pathPrefix="/MijnSalland/Redirect" />
             </intent-filter>
         </activity>
 
@@ -63,8 +63,8 @@
 
                 <data
                     android:scheme="https"
-                    android:host="salproxy.product-league.com"
-                    android:pathPrefix="/Salland_DigiD/Redirect" />
+                    android:host="testpilot.hollandzorg.com"
+                    android:pathPrefix="/MijnSalland/Redirect" />
             </intent-filter>
         </activity>
 
@@ -80,8 +80,8 @@
 
                 <data
                     android:scheme="https"
-                    android:host="salproxy.product-league.com"
-                    android:pathPrefix="/Salland_DigiD/Redirect" />
+                    android:host="testpilot.hollandzorg.com"
+                    android:pathPrefix="/MijnSalland/Redirect" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -89,7 +89,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="nl.salland.android.mysandbox"/>
+                <data android:scheme="nl.salland.mijn.dev"/>
             </intent-filter>
         </activity>
 
