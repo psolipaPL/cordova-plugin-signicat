@@ -20,17 +20,17 @@
 
 
         <framework
-            src="org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
+            src="org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
             type="gradlePlugin" />
 
 
         <framework
-            src="org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+            src="org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
             type="gradleReference" />
 
 
         <framework
-            src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
+            src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
             type="gradleReference" />
 
 
