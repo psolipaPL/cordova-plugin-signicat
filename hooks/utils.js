@@ -30,8 +30,12 @@ function readFile(filePath) {
 
 function indexReplacer(indexPath, content) {
 
-    content = content.replace('<script type="text/javascript" src="scripts/cordova.js', '<script type="text/javascript">function handleOpenURL(url) {setTimeout(function(){console.log(url);},0);}</script><script type="text/javascript" src="scripts/cordova.js');
+    /*content = content.replace('<script type="text/javascript" src="scripts/cordova.js', '<script type="text/javascript">function handleOpenURL(url) {setTimeout(function(){console.log(url);},0);}</script><script type="text/javascript" src="scripts/cordova.js');
+    console.log('Added openURLhandler JS function.')*/
+
+    content = content.replace('<script type="text/javascript" src="scripts/requirejs-bootstrap', '<script type="text/javascript">function handleOpenURL(url) {setTimeout(function(){console.log(url);},0);}</script><script type="text/javascript" src="scripts/requirejs-bootstrap');
     console.log('Added openURLhandler JS function.')
+
 
     fs.writeFileSync(indexPath, content, "utf-8");
 }
