@@ -7,11 +7,19 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 
-
-
+import com.connectis.sdk;
 import com.connectis.sdk.ConnectisSDK;
+import com.connectis.sdk.api.configuration;
 import com.connectis.sdk.api.configuration.ConnectisSDKConfiguration;
-import com.connectis.sdk.*;
+import com.connectis.sdk.api.authentication.AccessTokenDelegate;
+import com.connectis.sdk.api.authentication.AuthenticationResponseDelegate;
+import com.connectis.sdk.api.authentication.DeviceAuthenticationResponseDelegate;
+import com.connectis.sdk.api.authentication.ErrorResponseDelegate;
+import com.connectis.sdk.internal.authentication.device.authentication.DeviceAuthenticationService;
+import com.connectis.sdk.internal.authentication.device.authentication.DeviceAuthenticationUtils;
+import com.connectis.sdk.internal.authentication.login.LoginService;
+import com.connectis.sdk.internal.authentication.login.LoginServiceParameters;
+import com.connectis.sdk.internal.authentication.token.AccessTokenService;
 
 
 public class SignicatPlugin extends CordovaPlugin {
