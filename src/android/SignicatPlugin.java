@@ -10,9 +10,7 @@ import android.app.Activity;
 
 
 import com.connectis.sdk.ConnectisSDK;
-import com.connectis.sdk.ConnectisSDKConfiguration;
-import com.connectis.sdk.AuthenticationResponseDelegate;
-import com.connectis.sdk.AccessTokenDelegate;
+
 
 
 public class SignicatPlugin extends CordovaPlugin {
