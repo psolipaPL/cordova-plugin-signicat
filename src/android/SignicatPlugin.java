@@ -7,9 +7,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 
-import com.connectis.sdk;
 import com.connectis.sdk.ConnectisSDK;
-import com.connectis.sdk.api.configuration;
 import com.connectis.sdk.api.configuration.ConnectisSDKConfiguration;
 import com.connectis.sdk.api.authentication.AccessTokenDelegate;
 import com.connectis.sdk.api.authentication.AuthenticationResponseDelegate;
