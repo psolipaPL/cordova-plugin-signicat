@@ -10,7 +10,8 @@ import android.app.Activity;
 
 
 import com.connectis.sdk.ConnectisSDK;
-
+import com.connectis.sdk.api.configuration.ConnectisSDKConfiguration;
+import com.connectis.sdk.*;
 
 
 public class SignicatPlugin extends CordovaPlugin {
