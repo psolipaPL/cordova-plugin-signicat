@@ -57,12 +57,12 @@ public class SignicatPlugin extends CordovaPlugin {
                 brokerDigidAppAcs,
                 LoginFlow.APP_TO_APP
             );
-            
+
 
             AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
 
                 @Override
-                public void handleResponse(AuthenticationResponse response) {
+                public void handleResponse() {
                     callbackContext.success("Signicat login successful");
                 }
 
