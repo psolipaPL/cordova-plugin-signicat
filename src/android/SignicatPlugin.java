@@ -23,8 +23,7 @@ import com.connectis.sdk.internal.authentication.token.AccessTokenService;
 public class SignicatPlugin extends CordovaPlugin {
 
     @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
-            throws JSONException {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         switch (action) {
             case "login":
@@ -46,53 +45,49 @@ public class SignicatPlugin extends CordovaPlugin {
     }
 
     private void login(JSONObject json, CallbackContext callbackContext) {
-        Activity activity = cordova.getActivity();
+
         try {
-            String issuer = json.getString("issuer");
-            String clientId = json.getString("clientId");
-            String redirectUri = json.getString("redirectUri");
-            String loginFlow = json.optString("loginFlow", "WEB");
-            boolean allowDeviceAuth = json.optBoolean("allowDeviceAuthentication", false);
-            String brokerAppAcs = json.optString("brokerAppAcs", null);
-            String brokerDigidAppAcs = json.optString("brokerDigidAppAcs", null);
+            Activity activity = cordova.getActivity();
 
-            ConnectisSDKConfiguration.Builder builder = new ConnectisSDKConfiguration.Builder()
-                    .issuer(issuer)
-                    .clientId(clientId)
-                    .redirectUri(redirectUri)
-                    .loginFlow(ConnectisSDKConfiguration.LoginFlow.valueOf(loginFlow))
-                    .allowDeviceAuthentication(allowDeviceAuth);
+            String issuer = args.getString(0);
+            String clientId = args.getString(1);
+            String redirectUri = args.getString(2);
+            String scopes = args.getString(3);
+            String brokerDigidAppAcs = args.getString(4);
 
-            if (brokerAppAcs != null) {
-                builder.brokerAppAcs(brokerAppAcs);
-            }
-            if (brokerDigidAppAcs != null) {
-                builder.brokerDigidAppAcs(brokerDigidAppAcs);
-            }
 
-            ConnectisSDKConfiguration config = builder.build();
-            ConnectisSDK.initialize(activity.getApplication(), config);
+            ConnectisSDKConfiguration configuration = new ConnectisSDKConfiguration(
+                issuer,
+                clientId,
+                redirectUri,
+                scopes,
+                brokerDigidAppAcs,
+                LoginFlow.APP_TO_APP
+            );
 
-            ConnectisSDK.login(activity, new AuthenticationResponseDelegate() {
-                @Override
-                public void onSuccess(com.connectis.sdk.AuthenticationResponse response) {
-                    try {
-                        JSONObject res = new JSONObject();
-                        res.put("issuer", response.getIssuer());
-                        res.put("accessToken", response.getAccessToken());
-                        res.put("idToken", response.getIdToken());
-                        res.put("refreshToken", response.getRefreshToken());
-                        callbackContext.success(res);
-                    } catch (JSONException e) {
-                        callbackContext.error("JSON error: " + e.getMessage());
+
+            activity.runOnUiThread(() -> {
+                ConnectisSDK.login(
+                    configuration,
+                    activity,
+
+                    // Success callback
+                    (Function1<AuthenticationResponse, Unit>) response -> {
+                        callbackContext.success("Signicat login successful");
+                        return Unit.INSTANCE;
+                    },
+
+                    // allowDeviceAuthentication
+                    ConnectisSDK.isDeviceAuthenticationEnabled(activity),
+
+                    // Error callback
+                    (Function1<ErrorResponse, Unit>) error -> {
+                        callbackContext.error("Signicat login failed");
+                        return Unit.INSTANCE;
                     }
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    callbackContext.error("Login error: " + e.getMessage());
-                }
+                );
             });
+                
 
         } catch (Exception e) {
             callbackContext.error("Login config error: " + e.getMessage());
