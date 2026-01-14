@@ -16,9 +16,27 @@
 
         <source-file src="src/android/libs/android-sdk-1.1.7.aar" target-dir="app/libs" />
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
-
-
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="testpilot.hollandzorg.com"
+                    android:pathPrefix="/MijnSalland/Redirect" />
+            </intent-filter>
+        </activity>
+
+
+
 <!--
         <framework
             src="org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
@@ -34,7 +52,7 @@
             src="org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
             type="gradleReference" />
 
--->
+
         <activity
             android:exported="true"
             android:name="com.connectis.sdk.api.authentication.AppResponseActivity"
@@ -93,7 +111,7 @@
                 <data android:scheme="nl.salland.mijn.dev"/>
             </intent-filter>
         </activity>
-
+-->
 
 
     </platform>
