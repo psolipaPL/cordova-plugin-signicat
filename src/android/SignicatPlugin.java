@@ -28,7 +28,7 @@ public class SignicatPlugin extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         switch (action) {
-            case "login":
+            case "loginAppToApp":
                 login(args, callbackContext);
                 return true;
             default:
