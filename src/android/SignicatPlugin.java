@@ -78,8 +78,8 @@ public class SignicatPlugin extends CordovaPlugin {
                 configuration,
                 cordova.getActivity(),
                 delegate,
-                allowDeviceAuthentication,
-                errorDelegate
+                errorDelegate,
+                allowDeviceAuthentication
             );
           } catch (Exception e) {
             callbackContext.error("Login config error: " + e.getMessage());
