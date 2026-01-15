@@ -84,6 +84,6 @@ public class SignicatPlugin extends CordovaPlugin {
                 callbackContext.error("Login config error: " + e.getMessage());
             }
         }
-
-
+        }
 }
+                                    
