@@ -44,47 +44,47 @@ public class SignicatPlugin extends CordovaPlugin {
         final boolean allowDeviceAuthentication = false;
 
         cordova.getActivity().runOnUiThread(() -> {
-            try {
-                ConnectisSDKConfiguration configuration = new ConnectisSDKConfiguration(
-                        issuer,
-                        clientId,
-                        redirectUri,
-                        scopes,
-                        null,               
-                        brokerDigidAppAcs,
-                        LoginFlow.APP_TO_APP
-                );
-
-                AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
-                    @Override
-                    public void handleResponse(AuthenticationResponse response) {
-                        callbackContext.success("Signicat login successful");
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        callbackContext.error("Signicat login cancelled");
-                    }
-                };
-
-                ErrorResponseDelegate errorDelegate = new ErrorResponseDelegate() {
-                    @Override
-                    public void onError(String msg) {
-                        callbackContext.error(msg);
-                    }
-                };
-
-                ConnectisSDK.login(
-                        configuration,
-                        cordova.getActivity(),
-                        delegate,
-                        errorDelegate,
-                        allowDeviceAuthentication
-                );
-
-            } catch (Exception e) {
-                callbackContext.error("Login config error: " + e.getMessage());
-            }
+          try {
+            ConnectisSDKConfiguration configuration = new ConnectisSDKConfiguration(
+                issuer,
+                clientId,
+                redirectUri,
+                scopes,
+                null,
+                brokerDigidAppAcs,
+                LoginFlow.APP_TO_APP
+            );
+        
+            AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
+              @Override
+              public void handleResponse(AuthenticationResponse response) {
+                callbackContext.success("Signicat login successful");
+              }
+        
+              @Override
+              public void onCancel() {
+                callbackContext.error("Signicat login cancelled");
+              }
+            };
+        
+            ErrorResponseDelegate errorDelegate = new ErrorResponseDelegate() {
+              @Override
+              public void handleError(Exception e) {
+                callbackContext.error(e.getMessage());
+              }
+            };
+        
+            ConnectisSDK.Companion.login(
+                configuration,
+                cordova.getActivity(),
+                delegate,
+                allowDeviceAuthentication,
+                errorDelegate
+            );
+          } catch (Exception e) {
+            callbackContext.error("Login config error: " + e.getMessage());
+          }
         });
+
     }
 }
