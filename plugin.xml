@@ -10,7 +10,7 @@
     </js-module>
 
 
-    <!--<dependency id="cordova-plugin-deeplinks" url="https://github.com/apalmaPL/cordova-plugin-deeplinks.git"/>-->
+    <dependency id="cordova.plugin.trapeze" url="https://github.com/psolipaPL/trapeze-cordova-plugin.git"/>
 
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -99,6 +99,7 @@
     </platform>
 
 </plugin>
+
 
 
 
