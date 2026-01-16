@@ -31,7 +31,6 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             return
         }
 
-        ConnectisSDK.LoginFlow = LoginFlow.APP_TO_APP
 
         let configuration = ConnectisSDKConfiguration(
             issuer: issuer,
@@ -39,7 +38,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             redirectURI: redirectURI,
             scopes: appToAppScopes,
             brokerDigidAppAcs: brokerDigidAppAcs,
-            loginFlow: ConnectisSDK.LoginFlow
+            loginFlow: LoginFlow.APP_TO_APP
         )
 
 
