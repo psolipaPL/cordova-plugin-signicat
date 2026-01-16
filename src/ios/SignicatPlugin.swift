@@ -15,22 +15,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
 
 
         self.currentCommand = command
-/*
-        /*Demo app default configuration*/
-        let issuer = "https://pkio.broker.ng-test.nl/broker/sp/oidc"
-        let clientID = "PRlEjCDjGEzzLimcNOYWnmxY4IWqRHe3"
-        let redirectURI = "https://pkio.broker.ng-test.nl/broker/app/redirect/response"
-        let appToAppScopes = "openid idp_scoping:https://was-preprod1.digid.nl/saml/idp/metadata_app"
-        let brokerDigidAppAcs = "https://pkio.broker.ng-test.nl/broker/authn/digid/digid-app-acs"
         
-        /*APalma Signicat SDK - OIDC Client configuration */
-        let issuer = "https://preprodbroker.salland.nl/auth/open"
-        let clientID = "sandbox-victorious-chess-790"
-        let redirectURI = "https://salland-dev.outsystems.app/Adriano_Sandbox/Redirect"
-        let appToAppScopes = "openid profile"
-        let brokerDigidAppAcs = "https://preprodbroker.salland.nl/broker/authn/digid/acs"
-
-*/
         guard command.arguments.count >= 5,
             let issuer = command.arguments[0] as? String,
             let clientID = command.arguments[1] as? String,
@@ -46,6 +31,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             return
         }
 
+        ConnectisSDK.LoginFlow = LoginFlow.APP_TO_APP
 
         let configuration = ConnectisSDKConfiguration(
             issuer: issuer,
@@ -53,7 +39,7 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
             redirectURI: redirectURI,
             scopes: appToAppScopes,
             brokerDigidAppAcs: brokerDigidAppAcs,
-            loginFlow: LoginFlow.APP_TO_APP
+            loginFlow: ConnectisSDK.LoginFlow
         )
 
 
