@@ -23,7 +23,7 @@
         <source-file src="src/android/SignicatPlugin.java" target-dir="src/com/signicat/plugin" />
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 
-        <edit-config target="AndroidManifest.xml" parent="/manifest/application" mode="merge">
+        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
             <activity android:exported="true" android:name="com.connectis.sdk.internal.authentication.login.LoginActivity" android:theme="@style/Theme.Cordova.App.DayNight">
     			<intent-filter android:autoVerify="true">
     				<action android:name="android.intent.action.VIEW" />
@@ -48,7 +48,7 @@
     				<data android:host="testpilot.hollandzorg.com" android:pathPrefix="/MijnSalland/Redirect" android:scheme="https" />
     			</intent-filter>
 		    </activity>
-        </edit-config>
+        </config-file>
     </platform>
 
     <platform name="ios">
@@ -99,6 +99,7 @@
     </platform>
 
 </plugin>
+
 
 
 
