@@ -9,9 +9,6 @@
         <clobbers target="Signicat" />
     </js-module>
 
-
-    <!--<dependency id="cordova.plugin.trapeze" url="https://github.com/psolipaPL/trapeze-cordova-plugin.git"/>-->
-
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Signicat">
@@ -103,6 +100,7 @@
     </platform>
 
 </plugin>
+
 
 
 
