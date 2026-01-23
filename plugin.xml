@@ -61,6 +61,9 @@
             <!--<preference name="SwiftVersion" value="6.2.1" />-->
             <preference name="SwiftVersion" value="5" />
         </config-file>
+
+        <source-file src="src/ios/AppDelegate+ConnectisHook.m" />
+        <source-file src="src/ios/ConnectisBridge.swift" />
         
         <config-file target="*-info.plist" parent="com.apple.developer.associated-domains"> 
             <array> 
