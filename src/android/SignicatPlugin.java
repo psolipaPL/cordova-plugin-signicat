@@ -10,6 +10,10 @@ import com.connectis.sdk.api.authentication.AuthenticationResponse;
 import com.connectis.sdk.api.authentication.AuthenticationResponseDelegate;
 import com.connectis.sdk.api.authentication.ErrorResponseDelegate;
 import com.connectis.sdk.internal.authentication.login.LoginFlow;
+import com.connectis.sdk.api.authentication.AccessTokenDelegate;
+import com.connectis.sdk.api.authentication.Token;
+import org.jetbrains.annotations.NotNull;
+
 
 public class SignicatPlugin extends CordovaPlugin {
 
@@ -19,8 +23,34 @@ public class SignicatPlugin extends CordovaPlugin {
             login(args, callbackContext);
             return true;
         }
+
+        if ("getAccessToken".equals(action)) {
+            getAccessToken(callbackContext);
+            return true;
+        }
+
         return false;
     }
+
+    private void getAccessToken(final CallbackContext callbackContext) {    
+
+        ConnectisSDK.Companion.useAccessToken(
+            cordova.getActivity(),
+            new AccessTokenDelegate() {
+                @Override
+                public void handleAccessToken(@NotNull Token accessToken) {
+                    callbackContext.success(accessToken.getValue());
+                }
+
+                @Override
+                public void onError(@NotNull String exception) {
+                    callbackContext.error("Error:getAccessToken: " + exception);
+                }
+            }
+        );
+
+    }
+
 
     private void login(JSONArray args, CallbackContext callbackContext) {
 
@@ -29,6 +59,7 @@ public class SignicatPlugin extends CordovaPlugin {
         final String redirectUri;
         final String scopes;
         final String brokerDigidAppAcs;
+        final boolean isAppToApp;
 
         try {
             issuer = args.getString(0);
@@ -36,6 +67,8 @@ public class SignicatPlugin extends CordovaPlugin {
             redirectUri = args.getString(2);
             scopes = args.getString(3);
             brokerDigidAppAcs = args.getString(4);
+            isAppToApp = args.optBoolean(5, false);
+
         } catch (JSONException e) {
             callbackContext.error("Invalid args: " + e.getMessage());
             return;
@@ -52,13 +85,13 @@ public class SignicatPlugin extends CordovaPlugin {
                 scopes,
                 null,
                 brokerDigidAppAcs,
-                LoginFlow.APP_TO_APP
+                (isAppToApp) ? LoginFlow.APP_TO_APP : LoginFlow.WEB
             );
         
             AuthenticationResponseDelegate delegate = new AuthenticationResponseDelegate() {
               @Override
               public void handleResponse(AuthenticationResponse response) {
-                callbackContext.success("Signicat login successful");
+                callbackContext.success(response.toString());
               }
         
               @Override
@@ -88,3 +121,4 @@ public class SignicatPlugin extends CordovaPlugin {
 
     }
 }
+

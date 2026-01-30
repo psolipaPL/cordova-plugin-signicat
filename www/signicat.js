@@ -16,29 +16,10 @@ window.handleOpenURL = function(url) {
 
 
 module.exports = {
-  login: function (
-    issuer,
-    clientID,
-    redirectURI,
-    appToAppScopes,
-    brokerDigidAppAcs
-  ) {
-    exec(
-      function (result) {
-                     self.alert("Success:\r\r" + result.status);
-                 },
-      function (error) {
-                     self.alert("Error:\r\r" + error);
-                 },
-      "Signicat",
-      "loginAppToApp",
-      [
-        issuer,
-        clientID,
-        redirectURI,
-        appToAppScopes,
-        brokerDigidAppAcs
-      ]
-    );
+  login: function (successHandler,errorHandler,issuer,clientID,redirectURI,appToAppScopes,brokerDigidAppAcs,isAppToApp) {
+    exec(successHandler,errorHandler,"Signicat","loginAppToApp",[issuer,clientID,redirectURI,appToAppScopes,brokerDigidAppAcs,isAppToApp]);
+  },
+  getAccessToken: function (successHandler,errorHandler,) {
+    exec(successHandler,errorHandler,"Signicat","getAccessToken",[]);
   },
 };

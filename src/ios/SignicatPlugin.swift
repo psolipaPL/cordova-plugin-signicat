@@ -5,23 +5,83 @@ import UIKit
 
 
 @objc(SignicatPlugin)
-class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
+class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate, AccessTokenDelegate  {
 
     private var currentCommand: CDVInvokedUrlCommand?
+    private var accessTokenCallbackId: String?
+
+    @objc(getAccessToken:)
+    @MainActor
+    func getAccessToken(command: CDVInvokedUrlCommand) {
+
+        self.accessTokenCallbackId = command.callbackId
+
+        showMessage(messageIn: "getAccessToken")
+
+        ConnectisSDK.useAccessToken(
+            caller: self.viewController,
+            delegate: self
+        )
+
+    }
+
+    func handleAccessToken(accessToken: Token) {
+
+        let result = CDVPluginResult(
+            status: CDVCommandStatus_OK,
+            messageAs: accessToken.getValue()
+        )
+        self.commandDelegate.send(
+            result,
+            callbackId: self.accessTokenCallbackId
+        )
+
+    }
+
+    func onError(errorMessage: String) {
+
+        let result = CDVPluginResult(
+            status: CDVCommandStatus_ERROR,
+            messageAs: errorMessage
+        )
+        self.commandDelegate.send(
+            result,
+            callbackId: self.accessTokenCallbackId
+        )
+
+    }
+
 
     @objc(loginAppToApp:)
     @MainActor
     func loginAppToApp(command: CDVInvokedUrlCommand) {
 
+        NSLog("BADRUZ!");
 
         self.currentCommand = command
+/*
+        /*Demo app default configuration*/
+        let issuer = "https://pkio.broker.ng-test.nl/broker/sp/oidc"
+        let clientID = "PRlEjCDjGEzzLimcNOYWnmxY4IWqRHe3"
+        let redirectURI = "https://pkio.broker.ng-test.nl/broker/app/redirect/response"
+        let appToAppScopes = "openid idp_scoping:https://was-preprod1.digid.nl/saml/idp/metadata_app"
+        let brokerDigidAppAcs = "https://pkio.broker.ng-test.nl/broker/authn/digid/digid-app-acs"
         
+        /*APalma Signicat SDK - OIDC Client configuration */
+        let issuer = "https://preprodbroker.salland.nl/auth/open"
+        let clientID = "sandbox-victorious-chess-790"
+        let redirectURI = "https://salland-dev.outsystems.app/Adriano_Sandbox/Redirect"
+        let appToAppScopes = "openid profile"
+        let brokerDigidAppAcs = "https://preprodbroker.salland.nl/broker/authn/digid/acs"
+
+*/
         guard command.arguments.count >= 5,
             let issuer = command.arguments[0] as? String,
             let clientID = command.arguments[1] as? String,
             let redirectURI = command.arguments[2] as? String,
             let appToAppScopes = command.arguments[3] as? String,
-            let brokerDigidAppAcs = command.arguments[4] as? String
+            let brokerDigidAppAcs = command.arguments[4] as? String,
+            let isAppToApp = command.arguments[5] as? Bool
         else {
             let result = CDVPluginResult(
                 status: CDVCommandStatus_ERROR,
@@ -32,13 +92,15 @@ class SignicatPlugin: CDVPlugin, AuthenticationResponseDelegate {
         }
 
 
+
+
         let configuration = ConnectisSDKConfiguration(
             issuer: issuer,
             clientID: clientID,
             redirectURI: redirectURI,
             scopes: appToAppScopes,
             brokerDigidAppAcs: brokerDigidAppAcs,
-            loginFlow: LoginFlow.APP_TO_APP
+            loginFlow: isAppToApp ? LoginFlow.APP_TO_APP : LoginFlow.WEB
         )
 
 
